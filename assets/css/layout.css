@@ -29,6 +29,15 @@
 .header-cta { display:flex; gap:12px; align-items:center; }
 .header-cta .btn { padding:11px 24px; font-size:14px; }
 
+/* --- Переключатель языка --- */
+.lang-switch { display:flex; gap:2px; align-items:center; background:var(--bg-soft); padding:3px; border-radius:8px; }
+.lang-switch a {
+  font-size:12px; font-weight:800; letter-spacing:1px; padding:6px 10px; border-radius:6px;
+  color:var(--ink-soft); transition:all .15s;
+}
+.lang-switch a:hover { color:var(--ink); }
+.lang-switch a.active { background:#fff; color:var(--ink); box-shadow:0 1px 4px rgba(29,30,32,.12); }
+
 /* Бургер (мобильный) */
 .nav-toggle { display:none; background:none; border:none; font-size:26px; cursor:pointer; color:var(--ink); }
 
@@ -48,6 +57,9 @@
 }
 .footer-bottom p { font-size:14px; color:#8b9098; }
 .footer-langs { font-size:13px; font-weight:700; letter-spacing:2px; color:#aeb3bb; }
+.footer-langs a { color:#aeb3bb; transition:color .15s; }
+.footer-langs a:hover { color:#fff; }
+.footer-langs a.active { color:#fff; }
 
 /* --- Мобильное меню (нет JS — прячем на мобильных, пока не нажат бургер) --- */
 @media (max-width:900px){

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt · РУБИКОН</title>
+  <meta name="description" content="Skontaktuj się z РУБИКОН, aby szybko wycenić przeprowadzkę lub dostawę we Wrocławiu. Telefon, komunikatory, formularz zgłoszenia.">
+  <link href="https://cdn.zyrosite.com/u1/google-fonts/font-faces?family=DM+Sans:wght@400;500;700&amp;family=Montserrat:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span class="mark">🚚</span>РУБИКОН</a>
+      <nav class="main-nav" aria-label="Główna nawigacja">
+        <ul>
+          <li><a href="about.html">O NAS</a></li>
+          <li><a href="services.html">USŁUGI I CENY</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">KONTAKT</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <nav class="lang-switch" aria-label="Język / Language">
+          <a href="../contact.html">RU</a>
+          <a class="active" href="contact.html">PL</a>
+          <a href="../en/contact.html">EN</a>
+        </nav>
+        <a class="btn btn-accent" href="contact.html">Uzyskaj wycenę</a>
+        <button class="nav-toggle" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="kicker">Kontakt</div>
+      <h1>Szybka wycena w kilka minut</h1>
+      <p>Opisz zadanie — podam cenę od razu, bez zbędnych pytań i telefonów.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Skontaktuj się wygodnie</h2>
+          <p>Wybierz komunikator, który Ci pasuje — odpowiadam szybko i na temat.</p>
+          <div class="contact-lines">
+            <div class="contact-line"><span class="ico">💬</span><div><b>WhatsApp</b><span>napisz — odpowiem</span></div></div>
+            <div class="contact-line"><span class="ico">✈️</span><div><b>Telegram</b><span>napisz — odpowiem</span></div></div>
+            <div class="contact-line"><span class="ico">📞</span><div><b>Telefon</b><span>+48 555 555 578</span></div></div>
+            <div class="contact-line"><span class="ico">📧</span><div><b>E-mail</b><span>info@rubiconmovers.pl</span></div></div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="cf-name">Imię</label>
+            <input type="text" id="cf-name" placeholder="Jak się do Ciebie zwracać" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-contact">Kontakt (telefon / komunikator)</label>
+            <input type="text" id="cf-contact" placeholder="+48 ..." required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-size">Ładunek</label>
+              <select id="cf-size">
+                <option>Mały (pudła, fotel)</option>
+                <option selected>Średni (stół, lodówka)</option>
+                <option>Duży (sofa, szafa)</option>
+                <option>Nie wiem — doradźcie</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-dir">Skąd → dokąd</label>
+              <input type="text" id="cf-dir" placeholder="Dzielnica / miasto">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-msg">Co przewozimy?</label>
+            <textarea id="cf-msg" rows="3" placeholder="Np. sofa i stół, 3. piętro bez windy"></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent btn-block">Wyślij zgłoszenie</button>
+          <p class="form-note" id="form-status" style="margin-top:12px;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand"><span class="mark">🚚</span>РУБИКОН</div>
+          <p>Przeprowadzki i dostawa ładunków do 1,4 t we Wrocławiu i okolicach.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Nawigacja</h4>
+          <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="services.html">Usługi i ceny</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="tel:+48555555578">+48 555 555 578</a></li>
+            <li><a href="mailto:info@rubiconmovers.pl">info@rubiconmovers.pl</a></li>
+            <li>Wrocław i okolice</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Godziny pracy</h4>
+          <ul>
+            <li>Pon–Pt: 8:00–20:00</li>
+            <li>Sob: 9:00–18:00</li>
+            <li>Ndz: po uzgodnieniu</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year></span> РУБИКОН</p>
+        <div class="footer-langs">
+          <a href="../contact.html">RU</a> · <a class="active" href="contact.html">PL</a> · <a href="../en/contact.html">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -19,19 +19,24 @@
   padding:16px; overflow:hidden;
 }
 .pl-map { width:100%; height:auto; display:block; }
-.pl-outline { fill:var(--accent-soft); stroke:var(--accent-dk); stroke-width:2; }
-.pl-dot { fill:var(--ink-soft); }
-.pl-label { font:600 11px var(--font-head); fill:var(--ink-soft); }
+.pl-outline { fill:none; stroke:var(--ink); stroke-width:1.5; }
+.pl-dot { fill:#fff; stroke:var(--ink); stroke-width:1.5; }
+.pl-label { font:700 11px var(--font-head); fill:var(--ink); paint-order:stroke; stroke:#fff; stroke-width:2.5px; }
 .pl-city { fill:var(--accent-dk); stroke:#fff; stroke-width:2; }
-.pl-city-label { fill:var(--accent-dk); font-weight:800; }
+.pl-city-label { fill:var(--accent-dk); font-weight:800; stroke:#fff; stroke-width:2.5px; }
 
-.addr-block { position:relative; }
-.addr-block h4 { font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:6px; letter-spacing:.3px; }
+.addr-block { position:relative; margin-bottom:6px; }
+.addr-block .addr-head { display:flex; justify-content:space-between; align-items:center; }
+.addr-head h4 { font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:6px; letter-spacing:.3px; }
+.addr-title { font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:6px; letter-spacing:.3px; display:block; }
+.city-group.hidden { display:none; }
 .addr-input {
   width:100%; padding:13px 16px; border:1px solid var(--line); border-radius:var(--r);
   font-family:var(--font); font-size:15px; background:var(--bg-white); color:var(--ink);
+  margin-bottom:8px;
 }
 .addr-input:focus { outline:2px solid var(--accent); border-color:transparent; }
+#addr-form .addr-block:last-child { margin-bottom:0; }
 
 .addr-suggest {
   position:absolute; top:100%; left:0; right:0; z-index:20;

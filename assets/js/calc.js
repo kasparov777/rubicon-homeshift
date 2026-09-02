@@ -37,6 +37,37 @@
   var INSURANCE = { s: 15, m: 25, l: 35 };
   var WROC = { lat: 51.1079, lon: 17.0385 };
 
+  /* --- Основные города Польши (мгновенный подбор без ожидания API) --- */
+  var PL_CITIES = [
+    {n:'Warszawa',lat:52.2297,lon:21.0122},{n:'Kraków',lat:50.0647,lon:19.9445},
+    {n:'Łódź',lat:51.7592,lon:19.4560},{n:'Wrocław',lat:51.1079,lon:17.0385},
+    {n:'Poznań',lat:52.4064,lon:16.9252},{n:'Gdańsk',lat:54.3520,lon:18.6466},
+    {n:'Szczecin',lat:53.4285,lon:14.5528},{n:'Bydgoszcz',lat:53.1235,lon:18.0084},
+    {n:'Lublin',lat:51.2465,lon:22.5684},{n:'Białystok',lat:53.1325,lon:23.1688},
+    {n:'Katowice',lat:50.2649,lon:19.0238},{n:'Gdynia',lat:54.5189,lon:18.5305},
+    {n:'Częstochowa',lat:50.8118,lon:19.1203},{n:'Radom',lat:51.4027,lon:21.1471},
+    {n:'Toruń',lat:53.0138,lon:18.5984},{n:'Sosnowiec',lat:50.2863,lon:19.1040},
+    {n:'Rzeszów',lat:50.0412,lon:21.9991},{n:'Kielce',lat:50.8661,lon:20.6286},
+    {n:'Olsztyn',lat:53.7784,lon:20.4801},{n:'Zielona Góra',lat:51.9356,lon:15.5062},
+    {n:'Opole',lat:50.6751,lon:17.9213},{n:'Gorzów Wielkopolski',lat:52.7368,lon:15.2288},
+    {n:'Wałbrzych',lat:50.7683,lon:16.2843},{n:'Zamość',lat:50.7231,lon:23.2525},
+    {n:'Tarnów',lat:50.0121,lon:20.9858},{n:'Płock',lat:52.5463,lon:19.7065},
+    {n:'Elbląg',lat:54.1561,lon:19.4045},{n:'Koszalin',lat:54.1943,lon:16.1714},
+    {n:'Słupsk',lat:54.4641,lon:17.0285},{n:'Jelenia Góra',lat:50.9048,lon:15.7193},
+    {n:'Legnica',lat:51.2073,lon:16.1615},{n:'Świdnica',lat:50.8440,lon:16.4898},
+    {n:'Milicz',lat:51.5250,lon:17.2630},{n:'Oleśnica',lat:51.2100,lon:17.3800},
+    {n:'Trzebnica',lat:51.3100,lon:17.0600},{n:'Syców',lat:51.3100,lon:17.6900},
+    {n:'Góra',lat:51.6700,lon:16.5400},{n:'Wołów',lat:51.3400,lon:16.6400},
+    {n:'Dzierżoniów',lat:50.7300,lon:16.6500},{n:'Ząbkowice Śląskie',lat:50.5900,lon:16.8100}
+  ];
+  function localCities(q) {
+    var s = q.trim().toLowerCase();
+    if (s.length < 2) return [];
+    return PL_CITIES.filter(function (c) {
+      return c.n.toLowerCase().indexOf(s) === 0;
+    }).slice(0, 6);
+  }
+
   var state = {
     acity: null, astreet: null, bcity: null, bstreet: null,  // выбранные координаты
     g: 'm', floor: 'no', trip: 'city', ins: false, km: null
@@ -59,10 +90,14 @@
   }
 
   /* ---------- Геокодинг ---------- */
-  function geocode(q, cb) {
-    fetch(NOMINATIM + '?q=' + encodeURIComponent(q) + '&countrycodes=pl&format=json&addressdetails=1&limit=6&accept-language=' + lang)
+  function geocode(q, cb, placeOnly) {
+    fetch(NOMINATIM + '?q=' + encodeURIComponent(q) + '&countrycodes=pl&format=json&addressdetails=1&limit=8&accept-language=' + lang)
       .then(function (r) { return r.json(); })
-      .then(function (res) { cb((res || []).map(normRes)); })
+      .then(function (res) {
+        var items = (res || []).map(normRes);
+        if (placeOnly) items = items.filter(function (it) { return it.isPlace; });
+        cb(items);
+      })
       .catch(function () { cb([]); });
   }
   function normRes(p) {
@@ -70,16 +105,19 @@
     var city = a.city || a.town || a.village || a.municipality || '';
     var street = a.road || a.pedestrian || a.footway || '';
     var streetFull = street + (a.house_number ? ' ' + a.house_number : '');
-    var clean = [streetFull, city].filter(Boolean).join(', ') + (a.postcode ? ', ' + a.postcode : '');
-    if (!streetFull && !city) clean = p.display_name.split(',')[0];
+    var isPlace = (p.class === 'place') || !!(city && !streetFull);   // настоящий город/деревня, не воеводство/аэропорт/объект
+    var clean = p.display_name.split(',')[0];
+    if (streetFull) clean = streetFull + (city ? ', ' + city : '') + (a.postcode ? ', ' + a.postcode : '');
+    else if (city) clean = city + (a.postcode ? ', ' + a.postcode : '');
     var sub = [a.postcode, a.state || a.county].filter(Boolean).join(' · ');
-    return { lat: parseFloat(p.lat), lon: parseFloat(p.lon), clean: clean, sub: sub };
+    return { lat: parseFloat(p.lat), lon: parseFloat(p.lon), clean: clean, sub: sub, isPlace: isPlace };
   }
 
   /* bindGeocode: slot — куда писать координаты {city|street}, ctxId — id поля города для контекста */
   function bindGeocode(inputId, suggestId, slot, ctxId) {
     var input = e(inputId), box = e(suggestId);
     if (!input || !box) return;
+    var placeOnly = (slot === 'acity' || slot === 'bcity');   // поля города — только «места», не воеводства
     var timer = null;
     function hide() { box.classList.remove('open'); }
     function show(items) {
@@ -110,7 +148,7 @@
       clearTimeout(timer); hide();
       state[slot] = null; resolve();
       var q = input.value.trim();
-      if (q.length < 3) return;
+      if (q.length < 2) return;
       var full = q;
       if (slot.indexOf('street') === 0) {
         // контекст города для поиска улицы
@@ -122,8 +160,20 @@
           if (c && c.value.trim()) cityCtx = c.value.trim();
         }
         if (cityCtx) full = q + ', ' + cityCtx;
+        timer = setTimeout(function () { geocode(full, show, placeOnly); }, 320);
+      } else {
+        // поле города: сначала мгновенно подскажем из локального списка
+        var locals = placeOnly ? localCities(q) : [];
+        if (locals.length) {
+          show(locals.map(function (c) {
+            return { clean: c.n, sub: '', lat: c.lat, lon: c.lon, isPlace: true };
+          }));
+        } else {
+          if (q.length >= 3) {
+            timer = setTimeout(function () { geocode(full, show, placeOnly); }, 320);
+          }
+        }
       }
-      timer = setTimeout(function () { geocode(full, show); }, 320);
     });
     document.addEventListener('click', function (e2) { if (!input.contains(e2.target)) hide(); });
   }

@@ -4,7 +4,9 @@
 
 /* --- Тёмная подкладка под заголовком (как на других страницах) --- */
 .page-hero {
-  background:var(--ink); color:#fff; padding:88px 0 72px;
+  color:#fff; padding:88px 0 72px;
+  background-color:var(--ink); background-size:cover; background-position:center;
+  background-image:linear-gradient(rgba(10,10,12,.60),rgba(12,12,14,.55)), url(../img/cartocka3.jpeg);
 }
 .page-hero .kicker { font-size:13px; font-weight:700; letter-spacing:2px; color:var(--accent); text-transform:uppercase; margin-bottom:12px; }
 .page-hero h1 { font-size:48px; margin-bottom:16px; }

@@ -6,11 +6,21 @@
 .hero {
   position:relative;
   background:
-    linear-gradient(120deg, rgba(20,20,22,.86), rgba(29,30,32,.55)),
-    var(--ink);
-  color:#fff; padding:120px 0 96px; overflow:hidden;
+    linear-gradient(rgba(10,10,12,.38), rgba(10,10,12,.38)),
+    url(../img/main.webp) center/cover no-repeat var(--ink);
+  color:#fff; padding:104px 0 120px; overflow:hidden;
 }
 .hero-inner { max-width:var(--container); margin:0 auto; padding:0 24px; }
+.hero-glass {
+  background: rgba(18,18,20,.62);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(18px) saturate(130%);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:20px;
+  padding:34px 38px;
+  max-width:660px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
 .hero h1 {
   font-size:64px; font-weight:800; letter-spacing:1px;
   max-width:720px; line-height:1.05; margin-bottom:24px;
@@ -20,7 +30,7 @@
   font-size:20px; color:#d6d8dc; max-width:540px; margin-bottom:36px;
 }
 .hero .cta-row { display:flex; gap:14px; flex-wrap:wrap; }
-.hero .badges { display:flex; gap:28px; flex-wrap:wrap; margin-top:56px; }
+.hero .badges { display:flex; gap:28px; flex-wrap:wrap; margin-top:40px; }
 .hero .badge { font-size:15px; color:#eef0f3; font-weight:600; }
 .hero .badge::before { content:"✓ "; color:var(--accent); font-weight:800; }
 
@@ -84,5 +94,7 @@
 }
 @media (max-width:560px){
   .cards-grid { grid-template-columns:1fr; }
-  .hero { padding:80px 0; }
+  .hero { padding:72px 0 96px; }
+  .hero-glass { padding:26px 24px; border-radius:16px; }
+  .hero .badges { margin-top:28px; gap:18px; }
 }

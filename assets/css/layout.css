@@ -43,7 +43,12 @@
 .nav-toggle { display:none; background:none; border:none; font-size:26px; cursor:pointer; color:var(--ink); }
 
 /* --- Футер --- */
-.site-footer { background:var(--ink); color:#dadce0; padding:64px 0 40px; }
+.site-footer {
+  color:#dadce0; padding:64px 0 40px;
+  background-color:var(--ink);
+  background-size:cover; background-position:center;
+  background-image:linear-gradient(rgba(12,12,14,.38),rgba(12,12,14,.58)), url(../img/podval.webp);
+}
 .footer-inner { max-width:var(--container); margin:0 auto; padding:0 24px; }
 .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:48px; }
 .footer-brand .brand { color:#fff; margin-bottom:16px; justify-content:flex-start; }

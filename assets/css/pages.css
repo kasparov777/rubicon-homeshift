@@ -4,8 +4,15 @@
 
 /* --- Шапка внутренней страницы --- */
 .page-hero {
-  background:var(--ink); color:#fff; padding:88px 0 72px;
+  color:#fff; padding:88px 0 72px;
+  background-size:cover; background-position:center;
+  background-color:var(--ink);
 }
+.page-hero--services { background-image:linear-gradient(rgba(10,10,12,.60),rgba(12,12,14,.55)), url(../img/cartocka.jpeg); }
+.page-hero--contact  { background-image:linear-gradient(rgba(10,10,12,.60),rgba(12,12,14,.55)), url(../img/cartocka2.jpeg); }
+.page-hero--calc     { background-image:linear-gradient(rgba(10,10,12,.60),rgba(12,12,14,.55)), url(../img/cartocka3.jpeg); }
+.page-hero--faq      { background-image:linear-gradient(rgba(10,10,12,.60),rgba(12,12,14,.55)), url(../img/cartocka4.jpeg); }
+.page-hero--about    { background-image:linear-gradient(rgba(10,10,12,.60),rgba(12,12,14,.55)), url(../img/cartocka5.jpeg); }
 .page-hero .kicker { font-size:13px; font-weight:700; letter-spacing:2px; color:var(--accent); text-transform:uppercase; margin-bottom:12px; }
 .page-hero h1 { font-size:48px; margin-bottom:16px; }
 .page-hero p { color:#d6d8dc; font-size:18px; max-width:640px; }
@@ -15,8 +22,10 @@
 .about-grid h2 { font-size:34px; margin-bottom:20px; }
 .about-grid p { color:var(--ink-soft); font-size:17px; margin-bottom:16px; }
 .about-photo {
-  background:var(--bg-soft); border-radius: var(--r-lg); height:380px;
-  display:grid; place-items:center; color:#aeb0b5; font-size:15px;
+  border-radius:var(--r-lg); height:380px; overflow:hidden;
+}
+.about-photo img {
+  width:100%; height:100%; object-fit:cover; display:block;
 }
 .quals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
 .qual { background:var(--bg-white); border:1px solid var(--line); border-radius:var(--r); padding:20px; text-align:center; }

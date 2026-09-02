@@ -48,6 +48,9 @@
 .insurance-box h5 { font-size:20px; margin-bottom:10px; }
 .insurance-box p { color:var(--ink); font-size:16px; max-width:640px; }
 
+/* --- Шаги (4 колонки) — how it works на О нас --- */
+.why-grid.steps4 { grid-template-columns:repeat(4,1fr); gap:24px; }
+
 /* --- FAQ --- */
 .faq-list { max-width:820px; }
 details.faq-item { background:var(--bg-white); border:1px solid var(--line); border-radius:var(--r); margin-bottom:14px; overflow:hidden; }
@@ -82,7 +85,11 @@ details.faq-item .faq-body { padding:0 26px 22px; color:var(--ink-soft); font-si
 @media (max-width:920px){
   .about-grid, .contact-grid { grid-template-columns:1fr; }
   .service-grid { grid-template-columns:1fr; }
+  .why-grid.steps4 { grid-template-columns:repeat(2,1fr); gap:20px; }
   .quals { grid-template-columns:1fr; }
   .page-hero h1 { font-size:36px; }
   .form-row { grid-template-columns:1fr; }
+}
+@media (max-width:560px){
+  .why-grid.steps4 { grid-template-columns:1fr; }
 }

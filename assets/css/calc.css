@@ -2,6 +2,15 @@
    CALC — страница калькулятора цены + карта Польши
    ============================================================ */
 
+/* --- Тёмная подкладка под заголовком (как на других страницах) --- */
+.page-hero {
+  background:var(--ink); color:#fff; padding:88px 0 72px;
+}
+.page-hero .kicker { font-size:13px; font-weight:700; letter-spacing:2px; color:var(--accent); text-transform:uppercase; margin-bottom:12px; }
+.page-hero h1 { font-size:48px; margin-bottom:16px; }
+.page-hero p { color:#d6d8dc; font-size:18px; max-width:640px; }
+@media (max-width:920px){ .page-hero h1 { font-size:36px; } }
+
 /* --- Ссылка активного пункта меню --- */
 .main-nav a.is-current { color:var(--accent-dk); opacity:1; }
 

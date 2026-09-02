@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price calculator · RUBICON</title>
+  <meta name="description" content="Get an instant moving and delivery quote in Wrocław and the region: load size, distance, floor, cargo insurance — a transparent estimate in a minute.">
+  <link href="https://cdn.zyrosite.com/u1/google-fonts/font-faces?family=DM+Sans:wght@400;500;700&amp;family=Montserrat:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/calc.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span class="mark">🚚</span>RUBICON</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="services.html">SERVICES & PRICING</a></li>
+          <li><a href="calc.html" class="is-current">CALCULATOR</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <nav class="lang-switch" aria-label="Language">
+          <a href="../calc.html">RU</a>
+          <a href="../pl/calc.html">PL</a>
+          <a class="active" href="calc.html">EN</a>
+        </nav>
+        <a class="btn btn-accent" href="contact.html">Get a quote</a>
+        <button class="nav-toggle" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="kicker">Calculator</div>
+      <h1>Get your moving quote in a minute</h1>
+      <p>Enter your pick-up and drop-off, what you're moving and the floor — the calculator gives you a fair, transparent estimate instantly, no surprises.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="calc-wrap">
+
+        <!-- Left panel: map + address pickers -->
+        <div class="calc-left">
+          <div class="map-card">
+            <svg class="pl-map" viewBox="0 0 460 460" role="img" aria-label="Map of Poland">
+              <path class="pl-outline" d="M 60 120 C 80 70 150 40 210 45 C 260 48 320 40 375 70 C 415 92 442 130 440 175 C 438 215 415 250 380 272 C 348 292 320 320 296 352 C 275 380 250 408 220 428 C 195 445 168 435 152 408 C 138 384 128 356 118 330 C 100 288 82 244 66 200 C 55 170 52 146 60 120 Z"/>
+              <path class="pl-city" d="M 228 230 m -6 0 a 6 6 0 1 0 12 0 a 6 6 0 1 0 -12 0"/>
+              <text x="238" y="222" class="pl-label pl-city-label">Wrocław</text>
+              <circle class="pl-dot" cx="330" cy="150" r="3.5"/><text x="338" y="146" class="pl-label">Warszawa</text>
+              <circle class="pl-dot" cx="340" cy="290" r="3.5"/><text x="348" y="286" class="pl-label">Kraków</text>
+              <circle class="pl-dot" cx="340" cy="80" r="3.5"/><text x="348" y="76" class="pl-label">Gdańsk</text>
+              <circle class="pl-dot" cx="250" cy="60" r="3.5"/><text x="258" y="56" class="pl-label">Poznań</text>
+              <circle class="pl-dot" cx="300" cy="330" r="3.5"/><text x="308" y="326" class="pl-label">Rzeszów</text>
+            </svg>
+          </div>
+
+          <div class="addr-block">
+            <h4>From</h4>
+            <input class="addr-input" id="addr-a" type="text" placeholder="From: start typing city, street or postcode…" autocomplete="off">
+            <div class="addr-suggest" id="suggest-a"></div>
+          </div>
+          <div class="addr-block">
+            <h4>To</h4>
+            <input class="addr-input" id="addr-b" type="text" placeholder="To: city, street, postcode…" autocomplete="off">
+            <div class="addr-suggest" id="suggest-b"></div>
+          </div>
+          <p class="form-note">Address suggestions and distance are calculated automatically.</p>
+        </div>
+
+        <!-- Right panel: cargo options -->
+        <div class="calc-right">
+          <div class="field">
+            <label>Cargo</label>
+            <div class="seg" id="gabarit">
+              <button type="button" data-g="s">Small<br><small>59 zł</small></button>
+              <button type="button" data-g="m" class="on">Medium<br><small>99 zł</small></button>
+              <button type="button" data-g="l">Large<br><small>149 zł</small></button>
+            </div>
+            <p class="hint" id="gab-hint">Table, fridge, cabinet — up to 1.5 m³</p>
+          </div>
+
+          <div class="field">
+            <label>Carrying upstairs</label>
+            <div class="seg" id="floor">
+              <button type="button" data-f="no" class="on">Lift available<br><small>no extra charge</small></button>
+              <button type="button" data-f="yes">No lift<br><small id="floor-price">+50 zł</small></button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Trip</label>
+            <div class="seg" id="trip">
+              <button type="button" data-t="city" class="on">In the city</button>
+              <button type="button" data-t="out">Out of town</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="check"><input type="checkbox" id="insurance"> Insure the cargo</label>
+            <p class="hint">Cargo insurance up to full value — a small addition to the estimate.</p>
+          </div>
+
+          <div class="summary" id="summary">
+            <div class="summary-rows" id="sum-rows"></div>
+            <div class="summary-total" id="sum-total">— zł</div>
+            <a class="btn btn-accent btn-block" href="contact.html">Book at this price</a>
+            <p class="form-note" style="margin-top:12px;">This estimate is a guide. We'll confirm the exact total in chat when you book.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand"><span class="mark">🚚</span>RUBICON</div>
+          <p>Moving and cargo delivery up to 1.4 t in Wrocław and the region.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services & pricing</a></li>
+            <li><a href="calc.html">Calculator</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+485****5578">+48 555 555 578</a></li>
+            <li><a href="mailto:info@rubiconmovers.pl">info@rubiconmovers.pl</a></li>
+            <li>Wrocław and surrounding area</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <ul>
+            <li>Mon–Fri: 8:00–20:00</li>
+            <li>Sat: 9:00–18:00</li>
+            <li>Sun: by appointment</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year></span> RUBICON</p>
+        <div class="footer-langs">
+          <a href="../calc.html">RU</a> · <a href="../pl/calc.html">PL</a> · <a class="active" href="calc.html">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/calc.js"></script>
+</body>
+</html>

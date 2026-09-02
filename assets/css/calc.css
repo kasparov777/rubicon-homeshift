@@ -1,0 +1,84 @@
+/* ============================================================
+   CALC — страница калькулятора цены + карта Польши
+   ============================================================ */
+
+/* --- Ссылка активного пункта меню --- */
+.main-nav a.is-current { color:var(--accent-dk); opacity:1; }
+
+/* --- Раскладка калькулятора --- */
+.calc-wrap {
+  display:grid; grid-template-columns: 1fr 1.05fr; gap:40px; align-items:start;
+}
+@media (max-width:920px){ .calc-wrap { grid-template-columns:1fr; } }
+
+/* --- Левая панель: карта + адреса --- */
+.calc-left { display:flex; flex-direction:column; gap:18px; }
+
+.map-card {
+  background:var(--bg); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:16px; overflow:hidden;
+}
+.pl-map { width:100%; height:auto; display:block; }
+.pl-outline { fill:var(--accent-soft); stroke:var(--accent-dk); stroke-width:2; }
+.pl-dot { fill:var(--ink-soft); }
+.pl-label { font:600 11px var(--font-head); fill:var(--ink-soft); }
+.pl-city { fill:var(--accent-dk); stroke:#fff; stroke-width:2; }
+.pl-city-label { fill:var(--accent-dk); font-weight:800; }
+
+.addr-block { position:relative; }
+.addr-block h4 { font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:6px; letter-spacing:.3px; }
+.addr-input {
+  width:100%; padding:13px 16px; border:1px solid var(--line); border-radius:var(--r);
+  font-family:var(--font); font-size:15px; background:var(--bg-white); color:var(--ink);
+}
+.addr-input:focus { outline:2px solid var(--accent); border-color:transparent; }
+
+.addr-suggest {
+  position:absolute; top:100%; left:0; right:0; z-index:20;
+  background:#fff; border:1px solid var(--line); border-radius:var(--r);
+  box-shadow:var(--shadow-lg); margin-top:4px; max-height:220px; overflow:auto; display:none;
+}
+.addr-suggest.open { display:block; }
+.addr-suggest .opt { padding:12px 16px; font-size:14px; cursor:pointer; }
+.addr-suggest .opt:hover { background:var(--accent-soft); }
+.addr-suggest .opt small { display:block; color:var(--ink-soft); font-size:12px; }
+.addr-suggest .nores { padding:12px 16px; font-size:13px; color:var(--ink-soft); }
+
+/* --- Правая панель: параметры --- */
+.calc-right { display:flex; flex-direction:column; gap:22px; }
+.field label { display:block; font-size:14px; font-weight:700; margin-bottom:10px; }
+.field label.check { font-size:16px; display:flex; align-items:center; gap:10px; cursor:pointer; }
+.field label.check input { width:18px; height:18px; accent-color:var(--accent-dk); }
+.field .hint { font-size:13px; color:var(--ink-soft); margin-top:8px; }
+
+.seg { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:8px; }
+.seg button {
+  padding:14px 10px; border:1.5px solid var(--line); border-radius:var(--r);
+  background:var(--bg-white); font-family:var(--font-head); font-weight:700; font-size:14px;
+  color:var(--ink); cursor:pointer; transition:all .15s; line-height:1.25;
+}
+.seg button small { display:block; font-weight:600; color:var(--ink-soft); font-size:12px; margin-top:2px; }
+.seg button.on { border-color:var(--accent); background:var(--accent-soft); }
+.seg button.on small { color:var(--accent-dk); }
+
+/* --- Итог --- */
+.summary {
+  background:var(--bg-white); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:24px; box-shadow:var(--shadow); margin-top:6px;
+}
+.summary-rows { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+.sum-row { display:flex; justify-content:space-between; font-size:14px; color:var(--ink-soft); }
+.sum-row b { color:var(--ink); }
+.sum-total-line {
+  display:flex; justify-content:space-between; align-items:baseline;
+  border-top:1px solid var(--line); padding-top:14px; margin-bottom:16px;
+}
+.sum-total-line span { font-size:14px; font-weight:700; color:var(--ink-soft); }
+.summary-total { font-family:var(--font-head); font-size:40px; font-weight:700; color:var(--accent-dk); }
+.sum-total-line .sub { font-size:12px; color:var(--ink-soft); font-weight:400; }
+
+.overload {
+  background:#fdf0ef; border:1px solid #e8b4ae; color:#a33a2d; border-radius:var(--r);
+  padding:12px 14px; font-size:13px; font-weight:600; margin-bottom:14px; display:none;
+}
+.overload.show { display:block; }

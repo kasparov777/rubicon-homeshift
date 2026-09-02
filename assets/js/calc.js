@@ -95,6 +95,7 @@
           d.querySelector('small').textContent = it.sub;
           d.addEventListener('mousedown', function (ev) {
             ev.preventDefault();
+            clearTimeout(timer);   // гасим отложенный геокодинг, чтобы опоздавший ответ не открыл список снова
             state[slot] = { lat: it.lat, lon: it.lon, label: it.clean };
             input.value = it.clean;
             hide();

@@ -60,7 +60,7 @@
 
   /* ---------- Геокодинг ---------- */
   function geocode(q, cb) {
-    fetch(NOMINATIM + '?q=' + encodeURIComponent(q) + '&countrycodes=pl&format=json&limit=6&accept-language=' + lang)
+    fetch(NOMINATIM + '?q=' + encodeURIComponent(q) + '&countrycodes=pl&format=json&addressdetails=1&limit=6&accept-language=' + lang)
       .then(function (r) { return r.json(); })
       .then(function (res) { cb((res || []).map(normRes)); })
       .catch(function () { cb([]); });

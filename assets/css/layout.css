@@ -46,7 +46,8 @@
 .site-footer { background:var(--ink); color:#dadce0; padding:64px 0 40px; }
 .footer-inner { max-width:var(--container); margin:0 auto; padding:0 24px; }
 .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:48px; }
-.footer-brand .brand { color:#fff; margin-bottom:16px; }
+.footer-brand .brand { color:#fff; margin-bottom:16px; justify-content:flex-start; }
+.footer-logo { height:34px; width:auto; display:block; line-height:0; }
 .footer-brand p { font-size:15px; color:#9aa0aa; max-width:260px; }
 .footer-col h4 { color:#fff; font-size:15px; margin-bottom:18px; letter-spacing:.5px; }
 .footer-col ul { display:flex; flex-direction:column; gap:10px; }

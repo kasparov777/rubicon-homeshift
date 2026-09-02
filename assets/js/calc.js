@@ -68,8 +68,10 @@
   function normRes(p) {
     var a = p.address || {};
     var city = a.city || a.town || a.village || a.municipality || '';
-    var clean = [a.road, city].filter(Boolean).join(', ') + (a.postcode ? ', ' + a.postcode : '');
-    if (!a.road && !city) clean = p.display_name.split(',')[0];
+    var street = a.road || a.pedestrian || a.footway || '';
+    var streetFull = street + (a.house_number ? ' ' + a.house_number : '');
+    var clean = [streetFull, city].filter(Boolean).join(', ') + (a.postcode ? ', ' + a.postcode : '');
+    if (!streetFull && !city) clean = p.display_name.split(',')[0];
     var sub = [a.postcode, a.state || a.county].filter(Boolean).join(' · ');
     return { lat: parseFloat(p.lat), lon: parseFloat(p.lon), clean: clean, sub: sub };
   }
@@ -109,8 +111,16 @@
       var q = input.value.trim();
       if (q.length < 3) return;
       var full = q;
-      if (slot.indexOf('street') === 0 && ctxId) {
-        var c = e(ctxId); if (c && c.value.trim()) full = q + ', ' + c.value.trim();
+      if (slot.indexOf('street') === 0) {
+        // контекст города для поиска улицы
+        var cityCtx = '';
+        if (state.trip === 'city') {
+          cityCtx = 'Wrocław';                        // скрытое поле города = Вроцлав
+        } else if (ctxId) {
+          var c = e(ctxId);
+          if (c && c.value.trim()) cityCtx = c.value.trim();
+        }
+        if (cityCtx) full = q + ', ' + cityCtx;
       }
       timer = setTimeout(function () { geocode(full, show); }, 320);
     });

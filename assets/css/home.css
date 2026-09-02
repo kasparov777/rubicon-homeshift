@@ -80,6 +80,8 @@
 /* --- CTA-блок --- */
 .cta-band {
   background:var(--accent); color:#fff; text-align:center; padding:72px 0;
+  background-size:cover; background-position:center;
+  background-image:linear-gradient(rgba(109,153,58,.74),rgba(96,135,50,.84)), url(../img/nadpodval.webp);
 }
 .cta-band h2 { font-size:44px; margin-bottom:16px; }
 .cta-band p { opacity:.92; font-size:18px; margin-bottom:32px; }

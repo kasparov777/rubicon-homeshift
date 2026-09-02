@@ -1,0 +1,69 @@
+/* ============================================================
+   LAYOUT — шапка, навигация, футер (общие для всех страниц)
+   ============================================================ */
+
+/* --- Шапка --- */
+.site-header {
+  position:sticky; top:0; z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner {
+  max-width:var(--container); margin:0 auto; padding:0 24px;
+  height:72px; display:flex; align-items:center; justify-content:space-between;
+}
+.brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; font-family:var(--font-head); }
+.brand .mark {
+  width:34px; height:34px; border-radius:8px; background:var(--ink);
+  color:#fff; display:grid; place-items:center; font-size:16px;
+}
+
+/* Навигация */
+.main-nav ul { display:flex; gap:28px; }
+.main-nav a {
+  font-size:14px; font-weight:600; letter-spacing:.5px;
+  color:var(--ink); opacity:.75; transition:opacity .15s;
+}
+.main-nav a:hover { opacity:1; color:var(--accent-dk); }
+.header-cta { display:flex; gap:12px; align-items:center; }
+.header-cta .btn { padding:11px 24px; font-size:14px; }
+
+/* Бургер (мобильный) */
+.nav-toggle { display:none; background:none; border:none; font-size:26px; cursor:pointer; color:var(--ink); }
+
+/* --- Футер --- */
+.site-footer { background:var(--ink); color:#dadce0; padding:64px 0 40px; }
+.footer-inner { max-width:var(--container); margin:0 auto; padding:0 24px; }
+.footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:48px; }
+.footer-brand .brand { color:#fff; margin-bottom:16px; }
+.footer-brand p { font-size:15px; color:#9aa0aa; max-width:260px; }
+.footer-col h4 { color:#fff; font-size:15px; margin-bottom:18px; letter-spacing:.5px; }
+.footer-col ul { display:flex; flex-direction:column; gap:10px; }
+.footer-col a { font-size:15px; color:#aeb3bb; transition:color .15s; }
+.footer-col a:hover { color:#fff; }
+.footer-bottom {
+  border-top:1px solid #3a3e44; padding-top:24px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+}
+.footer-bottom p { font-size:14px; color:#8b9098; }
+.footer-langs { font-size:13px; font-weight:700; letter-spacing:2px; color:#aeb3bb; }
+
+/* --- Мобильное меню (нет JS — прячем на мобильных, пока не нажат бургер) --- */
+@media (max-width:900px){
+  .main-nav {
+    position:fixed; inset:72px 0 auto 0; background:#fff;
+    border-bottom:1px solid var(--line); padding:20px 24px;
+    display:none;
+  }
+  .main-nav.open { display:block; }
+  .main-nav ul { flex-direction:column; gap:18px; }
+  .main-nav a { font-size:18px; }
+  .nav-toggle { display:inline-block; }
+  .header-cta .btn-outline { display:none; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+}
+
+@media (max-width:520px){
+  .footer-grid { grid-template-columns:1fr; }
+}

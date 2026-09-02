@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты · РУБИКОН</title>
+  <meta name="description" content="Свяжитесь с РУБИКОН для быстрого расчёта переезда или доставки во Вроцлаве. Телефон, мессенджеры, форма заявки.">
+  <link href="https://cdn.zyrosite.com/u1/google-fonts/font-faces?family=DM+Sans:wght@400;500;700&amp;family=Montserrat:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span class="mark">🚚</span>РУБИКОН</a>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="about.html">О НАС</a></li>
+          <li><a href="services.html">УСЛУГИ И ЦЕНЫ</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">КОНТАКТЫ</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-accent" href="contact.html">Получить расчёт</a>
+        <button class="nav-toggle" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="kicker">Контакты</div>
+      <h1>Быстрый расчёт за пару минут</h1>
+      <p>Опишите задачу — я назову цену сразу, без лишних вопросов и звонков.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Связаться удобно</h2>
+          <p>Выберите мессенджер, который ближе — отвечаю быстро и по делу.</p>
+          <div class="contact-lines">
+            <div class="contact-line"><span class="ico">💬</span><div><b>WhatsApp</b><span>пишите — отвечу</span></div></div>
+            <div class="contact-line"><span class="ico">✈️</span><div><b>Telegram</b><span>пишите — отвечу</span></div></div>
+            <div class="contact-line"><span class="ico">📞</span><div><b>Телефон</b><span>+48 555 555 578</span></div></div>
+            <div class="contact-line"><span class="ico">📧</span><div><b>Почта</b><span>info@rubiconmovers.pl</span></div></div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="cf-name">Имя</label>
+            <input type="text" id="cf-name" placeholder="Как к вам обращаться" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-contact">Контакт (телефон / мессенджер)</label>
+            <input type="text" id="cf-contact" placeholder="+48 ..." required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-size">Груз</label>
+              <select id="cf-size">
+                <option>Малый (коробки, кресло)</option>
+                <option selected>Средний (стол, холодильник)</option>
+                <option>Крупный (диван, шкаф)</option>
+                <option>Не знаю — подскажите</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-dir">Откуда → куда</label>
+              <input type="text" id="cf-dir" placeholder="Район / город">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-msg">Что перевозим?</label>
+            <textarea id="cf-msg" rows="3" placeholder="Например: диван и стол, 3-й этаж без лифта"></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent btn-block">Отправить заявку</button>
+          <p class="form-note" id="form-status" style="margin-top:12px;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand"><span class="mark">🚚</span>РУБИКОН</div>
+          <p>Переезды и доставка грузов до 1,4 т во Вроцлаве и области.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги и цены</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <ul>
+            <li><a href="tel:+4855555578">+48 555 555 578</a></li>
+            <li><a href="mailto:info@rubiconmovers.pl">info@rubiconmovers.pl</a></li>
+            <li>Вроцлав и область</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Часы работы</h4>
+          <ul>
+            <li>Пн–Пт: 8:00–20:00</li>
+            <li>Сб: 9:00–18:00</li>
+            <li>Вс: по договорённости</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year></span> РУБИКОН</p>
+        <div class="footer-langs">PL · UA · RU</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

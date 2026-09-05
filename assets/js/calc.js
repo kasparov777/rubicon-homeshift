@@ -33,7 +33,7 @@
   var FLOOR = { s: 30, m: 50, l: 70 };
   var CITY_FREE = 5;
   var PROG = [{ upto: 3, rate: 2.50 }, { upto: 2, rate: 2.75 }, { upto: Infinity, rate: 3.00 }];
-  var OUT_FREE = 30, OUT_KM = 3.75, OUT_BASE = { s: 179, m: 249, l: 359 };
+  var OUT_FREE = 30, OUT_KM = 3.75;
   var INSURANCE = { s: 15, m: 25, l: 35 };
   var WROC = { lat: 51.1079, lon: 17.0385 };
 
@@ -226,6 +226,12 @@
     return Math.round(total);
   }
 
+  function intercityExtra(km) {
+    var withinCityFormula = cityExtra(Math.min(km, OUT_FREE));
+    var beyondThirty = Math.max(0, km - OUT_FREE) * OUT_KM;
+    return Math.round(withinCityFormula + beyondThirty);
+  }
+
   /* ---------- Смета ---------- */
   function recalc() {
     if (!rowsEl) return;
@@ -236,7 +242,7 @@
 
     var rows = [];
     var kmReady = state.a && state.b && state.km != null;
-    var base = state.trip === 'out' && kmReady ? OUT_BASE[g] : RATES[g].base;
+    var base = RATES[g].base;
     rows.push({ k: D.gab + gname[g], v: base + ' zł' });
 
     var kmAdd = 0;
@@ -245,8 +251,8 @@
         var ex = cityExtra(state.km); kmAdd = ex;
         rows.push({ k: D.km + ' (' + state.km + ', ' + D.kmf + ')', v: ex ? '+' + ex + ' zł' : D.inc });
       } else {
-        var out = Math.max(0, state.km - OUT_FREE); kmAdd = Math.round(out * OUT_KM);
-        rows.push({ k: D.kmo + ' (' + out + ' × 3,75)', v: out ? '+' + kmAdd + ' zł' : D.inc });
+        kmAdd = intercityExtra(state.km);
+        rows.push({ k: D.km + ' (' + state.km + ', ' + D.kmf + ')', v: kmAdd ? '+' + kmAdd + ' zł' : D.inc });
       }
     } else rows.push({ k: D.route, v: D.pick });
 
